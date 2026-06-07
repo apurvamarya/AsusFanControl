@@ -40,24 +40,24 @@ namespace AsusFanControlGUI
             {
                 if(trayIcon == null)
                 {
+                    var contextMenu = new ContextMenuStrip();
+                    contextMenu.Items.Add("Show", null, (s1, e1) =>
+                    {
+                        trayIcon.Visible = false;
+                        Show();
+                    });
+                    contextMenu.Items.Add("Exit", null, (s1, e1) =>
+                    {
+                        Close();
+                        trayIcon.Visible = false;
+                        Application.Exit();
+                    });
+                    
                     trayIcon = new NotifyIcon()
                     {
                         Icon = Icon,
-                        ContextMenu = new ContextMenu(new MenuItem[] {
-                            new MenuItem("Show", (s1, e1) =>
-                            {
-                                trayIcon.Visible = false;
-                                Show();
-                            }),
-                            new MenuItem("Exit", (s1, e1) =>
-                            {
-                                Close();
-                                trayIcon.Visible = false;
-                                Application.Exit();
-                            }),
-                        }),
+                        ContextMenuStrip = contextMenu,
                     };
-
                     trayIcon.MouseClick += (s1, e1) =>
                     {
                         if (e1.Button != MouseButtons.Left)
