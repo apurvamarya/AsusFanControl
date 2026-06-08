@@ -13,5 +13,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\AsusFanControl\AsusFanControl.csproj" />
+      <Content Include="propeller.ico">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
   </ItemGroup>
 </Project>
